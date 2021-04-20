@@ -1,0 +1,19 @@
+- from:
+    uri: "knative://channel/notify" 
+    steps:
+      - unmarshal:
+          json: {}
+      - set-property: 
+          name: chatid
+          constant: "REPLACE_ME"
+      - convert-body-to: 
+          type: "java.lang.String"
+          type-class: "java.lang.String"
+      - to: 
+          uri: "log:foo?showHeaders=true"
+      - to: 
+          uri: "telegram:bots"
+          parameters:
+            authorizationToken: "{{authorizationToken}}"
+            chatId: "{{chatid}}"
+      

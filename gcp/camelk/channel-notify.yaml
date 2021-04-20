@@ -1,0 +1,11 @@
+apiVersion: messaging.knative.dev/v1
+kind: Channel
+metadata:
+  name: notify
+  labels:
+    app: channel
+    app.kubernetes.io/instance: channel
+    app.kubernetes.io/component: channel
+  annotations:
+    openshift.io/generated-by: OpenShiftWebConsole
+spec: {}

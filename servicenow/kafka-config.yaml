@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-config
+data:
+  kafka.brokers: my-cluster-kafka-bootstrap.demo.svc:9092
+  application.properties: |
+    camel.component.kafka.brokers=my-cluster-kafka-bootstrap.demo.svc:9092

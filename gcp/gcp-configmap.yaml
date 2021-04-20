@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  google-service-acc-key.json: |
+    REPLACE_ME
+kind: ConfigMap
+metadata:
+  name: gcp-configmap

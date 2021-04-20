@@ -1,0 +1,30 @@
+apiVersion: camel.apache.org/v1alpha1
+kind: KameletBinding
+metadata:
+  name: kamelet-aws-sqs-source
+  labels:
+    app: kamelet-aws-sqs-source
+    app.kubernetes.io/instance: kamelet-aws-sqs-source
+    app.kubernetes.io/component: kamelet-aws-sqs-source
+    app.kubernetes.io/name: kamelet-aws-sqs-source
+    app.kubernetes.io/part-of: strimzi-my-cluster
+  annotations:
+    openshift.io/generated-by: OpenShiftWebConsole
+spec:
+  source:
+    ref:
+      apiVersion: camel.apache.org/v1alpha1
+      kind: Kamelet
+      name: aws-sqs-source
+    properties:
+      accessKey: REPLACE_ME
+      autoCreateQueue: false
+      deleteAfterRead: true
+      queueNameOrArn: sqs-queue
+      region: REPLACE_ME
+      secretKey: REPLACE_ME
+  sink:
+    ref:
+      apiVersion: messaging.knative.dev/v1
+      kind: Channel
+      name: notify

@@ -1,0 +1,43 @@
+openapi: 3.0.2
+info:
+    title: Incident API
+    version: 1.0.0
+    description: Incident Report
+paths:
+    /request:
+        post:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Incident'
+                required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: string
+                    description: Done
+            operationId: sendtoall
+            summary: Send to incident pool
+components:
+    schemas:
+        Incident:
+            title: Root Type for Incident
+            description: ''
+            type: object
+            properties:
+                request:
+                    type: string
+                apino:
+                    type: string
+                request owner:
+                    type: string
+                platform:
+                    type: string
+            example:
+                request: Request File From Azure
+                apino: API0010001
+                request owner: Christina
+                platform: azure
