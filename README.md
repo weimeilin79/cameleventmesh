@@ -130,9 +130,11 @@ kamel run AwsCamel.java
 
 cd ..
 oc create -f aws-sqs-source.kamelet.yaml
-
 ```
+
 AWS SQS (aws-sqs-source)
+```
+
     kind: Channel
       name: notify
     source:
