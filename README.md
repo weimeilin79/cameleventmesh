@@ -132,23 +132,22 @@ cd ..
 oc create -f aws-sqs-source.kamelet.yaml
 
 ```
-
 AWS SQS (aws-sqs-source)
     kind: Channel
       name: notify
     source:
      properties:
-      accessKey: AKIA2VS3FJBGSKRT2HGK
+      accessKey: REPLACE_ME
       autoCreateQueue: false
       deleteAfterRead: true
       queueNameOrArn: sqs-queue
       region: us-east-1
-      secretKey: jFB+UH1bxzIx7dkIe4ekXBdb1M9zgyRY16gTbSWu
+      secretKey: REPLACE_ME
     ref:
       apiVersion: camel.apache.org/v1alpha1
       kind: Kamelet
       name: aws-sqs-source
-
+```
 or 
 ```shell script
 oc create -f kamelet-aws-sqs-binding.yaml
@@ -164,5 +163,16 @@ oc adm policy add-cluster-role-to-user cluster-monitoring-view -z grafana-servic
 oc serviceaccounts get-token grafana-serviceaccount
 sed "s/REPLACEME/$(oc serviceaccounts get-token grafana-serviceaccount)/" grafana-datasource.yaml.bak > grafana-datasource.yaml
 oc create -f grafana-datasource.yaml
-oc create -f grafana-dashboard.yaml
+#oc create -f grafana-dashboard.yaml
+```
+IMPORT the grafana.json in Grafana
+
+## INSTALL API
+
+
+```shell script
+
+cd serverless/api
+oc create secret generic kafka-credential --from-file=incidentapi.properties
+kamel run IncidentApi.java
 ```
