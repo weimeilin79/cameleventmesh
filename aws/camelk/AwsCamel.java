@@ -14,7 +14,7 @@ public class AwsCamel extends RouteBuilder {
             .log("Got -> ${body}")
             .filter().jsonpath("$[?(@.platform == 'aws')]" )
             .log("SENT -> ${body}")
-            .to("aws-sns://sns-topic?accessKey={{accessKey}}&secretKey={{secretKey}}&region={{region}}")
+            .to("aws2-sns://sns-topic?accessKey={{accessKey}}&secretKey={{secretKey}}&region={{region}}")
         ;
     }
 }
